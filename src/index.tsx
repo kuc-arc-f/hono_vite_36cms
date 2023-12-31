@@ -11,8 +11,8 @@ const app = new Hono()
 // router
 import testRouter from './routes/test';
 import postRouter from './routes/post';
+import siteRouter from './routes/site';
 //
-//import TaskEdit from './pages/sites/edit/App';
 import PostsIndex from './pages/posts/App';
 import PostsShow from './pages/posts/show/App';
 
@@ -20,12 +20,15 @@ import PostsShow from './pages/posts/show/App';
 app.get('/', async (c) => { 
   let page = c.req.query('page');
   if(!page) { page = '1';}
+  const site = await siteRouter.get();
   const items = await postRouter.get_list();
-//console.log(items);
+//console.log(site);
 //console.log("page=", page);
-  return c.html(renderToString(<PostsIndex items={items} page={page} />));
+  return c.html(
+    renderToString(<PostsIndex items={items} page={page} site={site} />
+  ));
 });
-//testRouter
+/*
 app.get('/test', async (c) => { 
   let page = c.req.query('page');
   const body = {}; 
@@ -34,6 +37,7 @@ app.get('/test', async (c) => {
 console.log(item);
  return c.html("<div>hello</div>");
 });
+*/
 //PostsShow
 app.get('/posts/:id', async (c) => { 
   const {id} = c.req.param();

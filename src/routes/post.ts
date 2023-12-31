@@ -55,7 +55,7 @@ const Router = {
                 id: id
             };
             const json = await HttpCommon.post(item, "/api/posts/get");
-console.log(json);
+//console.log(json);
             return json.data;
         } catch (e) {
             console.error(e);
