@@ -5,8 +5,10 @@ let title = "Welcome";
 //
 export default function Page(props: any) {
     return (
-    <html>
+    <html lang="en">
       <head>
+        <meta charSet="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{title}</title>
         <link href="/static/globals.css" rel="stylesheet" />
         <link href="/static/micromodal.css" rel="stylesheet" />
