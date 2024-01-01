@@ -20,7 +20,7 @@ export default  function PostShow(props: any) {
       <h1 className="text-4xl font-bold">{props.item.title}</h1>
       <p>id: {props.item.id}, {props.item.createdAt}</p>
       <hr />
-      <div dangerouslySetInnerHTML={{ __html: content }}
+      <div dangerouslySetInnerHTML={{ __html: content }} id="content_html"
       className="mb-8" />
       <hr className="my-12" />
     </div>
