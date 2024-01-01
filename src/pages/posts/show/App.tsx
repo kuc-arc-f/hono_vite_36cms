@@ -11,7 +11,7 @@ export default  function PostShow(props: any) {
   //
   return (
   <Layout title="Show">
-    <div className="post_show_wrap container bg-white mx-auto mt-0 mb-8 px-8 py-4">
+    <div className="post_show_wrap container bg-white mx-auto mt-14 mb-8 px-8 py-4">
       <link href="/static/postshow.css" rel="stylesheet" />
       <a href="/" className="btn-outline-purple ms-2 my-0"
       >back</a>

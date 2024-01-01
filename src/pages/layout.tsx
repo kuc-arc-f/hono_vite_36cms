@@ -14,22 +14,26 @@ export default function Page(props: any) {
         <link href="/static/micromodal.css" rel="stylesheet" />
         <link href="/static/main.css" rel="stylesheet" />
       </head>
-      <body>
-        <div className="text-center py-2">
-          <a href="/">[ home ]</a>
+      <body className="bg-gray-100 min-h-screen flex flex-col">
+        <header className="bg-gray-100 text-gray-900 text-center py-4 fixed top-0 left-0 right-0">
+          <a href="/">[ Home ]</a>
+        </header>          
+        <div className="flex-grow mt-0">
+          <div className ="bg-gray-200">{props.children}</div>
         </div>
-        
-        <div className ="bg-gray-200">{props.children}</div>
+        {/* footer */}
+        <footer className="bg-gray-400 text-white py-4 text-center fixed bottom-0 w-full">
+        Visit: https://github.com/kuc-arc-f/hono_vite_36cms
+      </footer>
       </body>
     </html>
     )
 }
 /*
-<hr />
-className ="container mx-auto my-2 px-8 bg-white"
-{import.meta.env.PROD ? (
-    <link href="/static/index.css" rel="stylesheet" />
-) : (
-    <link href="/src/index.css" rel="stylesheet" />
-)}   
+          <h1>My Website</h1>
+        <div className="text-center py-2">
+          <a href="/">[ home ]</a>
+        </div>
+flex flex-col
+&copy; 2023 Your Company
 */

@@ -15,7 +15,7 @@ export default function Page(props: any) {
 //
   return (
   <Layout>
-    <div className="text-center py-16 bg-gray-400 text-white">
+    <div className="text-center py-16 bg-gray-400 text-white mt-10">
       <h1 className="text-4xl font-bold">{props.site.name}</h1>
     </div>
     <input type="text" className="d-none" id="item_id" defaultValue={props.id} />
