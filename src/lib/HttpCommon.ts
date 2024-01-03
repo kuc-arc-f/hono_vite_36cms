@@ -12,9 +12,9 @@ const HttpCommon = {
     try {
       const url = import.meta.env.VITE_API_URL;
       const siteId = import.meta.env.VITE_SITE_ID;
-//    const apiKey = import.meta.env.PUBLIC_API_KEY;
+    const apiKey = import.meta.env.VITE_API_KEY;
 //console.log("#getList.apiKey=" + apiKey);
-//      item.api_key = apiKey
+      item.api_key = apiKey
       item.siteId = Number(siteId);
 //console.log("#post");
 //console.log(item);

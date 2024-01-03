@@ -6,7 +6,7 @@
 
  date    : 2023/12/29
 
- update  : 2023/12/31
+ update  : 2024/01/02
 ***
 ### Summary
 
@@ -20,7 +20,7 @@ pages + D1, CMS sample
 ```
 VITE_SITE_ID=1
 VITE_API_URL=http://localhost
-VITE_API_KEY=123
+VITE_API_KEY="123"
 ```
 
 ***
