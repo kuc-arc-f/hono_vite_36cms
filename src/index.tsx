@@ -21,8 +21,9 @@ app.get('/', async (c) => {
   let page = c.req.query('page');
   if(!page) { page = '1';}
   const site = await siteRouter.get();
-  const items = await postRouter.get_list();
-//console.log(site);
+//  const items = await postRouter.get_list();
+  const items = await postRouter.get_list_page(Number(page));
+//console.log(items);
 //console.log("page=", page);
   return c.html(
     renderToString(<PostsIndex items={items} page={page} site={site} />
