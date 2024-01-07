@@ -47,5 +47,14 @@ console.log("id=", id);
 //console.log(item);
   return c.html(renderToString(<PostsShow item={item} id={Number(id)} />));
 });
+/*
+API
+*/
+app.post('/api/posts/search', async (c) => {
+  const body = await c.req.json();
+console.log(body);
+  const resulte = await postRouter.search(body, c);
+  return c.json({ret: "OK", data: resulte});
+});
 
 export default app

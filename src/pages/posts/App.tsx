@@ -19,10 +19,24 @@ export default function Page(props: any) {
       <h1 className="text-4xl font-bold">{props.site.name}</h1>
     </div>
     <input type="text" className="d-none" id="item_id" defaultValue={props.id} />
-    <div id="root"></div>
+    <div className="col-md-6 text-end  bg-white py-1">
+        <span className="search_key_wrap">
+        <input type="text" 
+        className="mx-2 border border-gray-400 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500" 
+        name="searchKey" id="searchKey"
+        placeholder="Title search" />
+        </span>                
+        <button className="ms-2 btn-outline-purple" id="btn_search"
+        >Search</button>
+    </div>    
+    
     {/*
     <hr className="my-2" />
     */}
+    <div 
+    className="container mx-auto my-2 px-2">
+      <div id="root"></div>
+    </div>
     <div 
     className="post_list_wrap container mx-auto my-2 px-2">
       {props.items.map((item: any) => {
@@ -55,16 +69,15 @@ export default function Page(props: any) {
     <style>{`
     .post_list_wrap {min-height: 500px;}
     `}</style>
+    {/* JS */}
+    {import.meta.env.PROD ? (
+        <script type="module" src="/static/PostIndex.js"></script>
+    ) : (
+        <script type="module" src="/src/client/PostIndex.ts"></script>
+    )}        
   </Layout>
   )
 }
 
 /*
-container mx-auto my-2 px-2
-sm:container sm:mx-auto
-        {import.meta.env.PROD ? (
-            <script type="module" src="/static/PostIndex.js"></script>
-        ) : (
-            <script type="module" src="/src/client/PostIndex.ts"></script>
-        )}        
 */

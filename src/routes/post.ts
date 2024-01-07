@@ -62,10 +62,26 @@ console.log(pinfo);
      *
      * @return
      */ 
-    search: async function()
+    search: async function(body, c)
     {
 //console.log("#search");
         try{    
+            try{    
+                const item = {
+                    "seachKey": body.seachKey,
+                };
+                /*
+                    "api_key": "1691623708384-361055",
+    "siteId" : 2,
+    "seachKey": "3"
+                */
+                const json = await HttpCommon.post(item, "/api/posts/search");
+    //console.log(json.data);
+                return json.data;
+            } catch (e) {
+                console.error(e);
+                return [];
+            } 
         } catch (e) {
             console.error(e);
             return [];

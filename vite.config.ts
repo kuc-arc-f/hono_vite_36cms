@@ -10,6 +10,7 @@ export default defineConfig(({ mode }) => {
           entry: [
             './src/client.ts',
             './src/client/PostIndex.ts',
+            './src/client/lib/HttpCommon.ts',
           ],
           formats: ['es'],
           fileName: '[name]',

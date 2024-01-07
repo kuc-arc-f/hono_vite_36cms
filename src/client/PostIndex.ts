@@ -1,9 +1,10 @@
 
 import { h, Component, render } from 'preact';
 import htm from 'htm';
-
+import HttpCommon from './lib/HttpCommon';
+//
 const html = htm.bind(h);
-console.log("#Page4.client.ts");
+console.log("#PostIndex.client.ts");
 //
 const PostIndex = {
     /**
@@ -68,28 +69,24 @@ console.log(json);
             const li: any[] = [];  
             items.forEach((element) => {
                 li.push(html`
-                <div>
-                    <a href="/sites/${element.id}"><h3 class="text-3xl font-bold"
-                    >${element.title}</h3></a>                    
-                    <p>id: ${element.id}, ${element.createdAt}</p>
-                    <a href="/posts/${element.id}">
-                        <button  class="btn-outline-purple ms-2 my-2">Show</button>
-                    </a>
-                    <a href="/post_edit/${element.id}">
-                        <button  class="btn-outline-purple ms-2 my-2">Edit</button>
-                    </a>
-                    <hr class="my-2" />
+                <div className="rounded-md bg-white my-2  p-4">
+                    <div className="flex flex-row">
+                        <div className="flex-1 p-2 m-1">
+                            <a href="/sites/${element.id}"><h3 class="text-3xl font-bold"
+                            >${element.title}</h3></a>
+                            <p>id: ${element.id}, ${element.createdAt}</p>
+                        </div>
+                        <div className="flex-1 p-2 m-1 text-end">
+                            <a href="/posts/${element.id}">
+                                <button  class="btn-outline-purple ms-2 my-2">Show</button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 `
                 );
             });
-            /*
-            <a href="/posts/${element.id}">
-                <button  class="btn-outline-purple ms-2 my-2">Show</button>
-            </a>
-            */
             render(li, document.getElementById("root"));
-    
         } catch (e) {
             console.error(e);
             throw new Error('Error , displayItems');
@@ -127,24 +124,51 @@ console.log(json);
             throw new Error('Error , getList');
         }
     }, 
-    /**/
+    /**
+     *
+     * @param
+     *
+     * @return
+     */   
+    search : async function(id: number): Promise<any>
+    {
+        try{
+            const searchKey = (<HTMLInputElement>document.querySelector("#searchKey")).value;
+            let ret: any[] = [];
+            const item = {
+                siteId: id,
+                seachKey: searchKey,
+            }
+            //console.log(item);
+            const json = await HttpCommon.post(item, "/api/posts/search");
+//console.log(json);
+            ret = json.data;
+            return ret;
+        } catch (e) {
+            console.error(e);
+            throw new Error('Error , search');
+        }
+    },    
+    /**
+     *
+     * @param
+     *
+     * @return
+     */   
     initProc: async function() {
         //console.log("init");
-        const id = (<HTMLInputElement>document.querySelector("#item_id")).value;
-        console.log("id=", id);
-        const res = await this.getList(Number(id));
-console.log(res);
-        this.displayItems(res);
-//displayItems
+        const siteId = import.meta.env.VITE_SITE_ID;
         //btn
-        const button = document.querySelector('#save');
-        button?.addEventListener('click', async () => {
-            const result = await this.addItem();
-console.log("result=", result);
-            if(result === true) {
-                location.reload();
+        const btn_search = document.querySelector('#btn_search');
+        btn_search?.addEventListener('click', async () => {
+            const post_list_wrap = document.querySelector(`.post_list_wrap`) as HTMLInputElement;
+            if (!post_list_wrap.classList.contains('d-none')) {
+                post_list_wrap?.classList.add('d-none');
             }
-        }); 
+            const res = await this.search(Number(siteId));
+            this.displayItems(res);
+//console.log(res);
+        });  
     },
 }
 PostIndex.initProc();
